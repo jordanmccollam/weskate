@@ -1,8 +1,10 @@
+body {
+    font-family: 'BenchNine', sans-serif;
+}
+
 .custom-body {
     height: 100vh;
     width: 100vw;
-    font-family: 'BenchNine', sans-serif;
-
 }
 
 .clear-link {
