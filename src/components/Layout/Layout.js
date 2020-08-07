@@ -11,8 +11,8 @@ const Layout = (props) => {
     var theme = darkTheme;
 
     return (
-        <div className="custom-body" style={{background: theme.colors.background}}>
-            {/* <Logo size={100} /> */}
+        <div className="custom-body p-5" style={{background: theme.colors.background}}>
+            <Logo size={300} color={theme.colors.primary} />
         </div>
     )
 }
