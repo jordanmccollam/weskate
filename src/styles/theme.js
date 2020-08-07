@@ -5,7 +5,7 @@ export const darkTheme = {
         text: '#FFF',
         alternateText: '#333333',
         disabled: '#ebebeb',
-
+        accent: '#38393A',
         primary: '#00AF74'
     }
 }
@@ -17,7 +17,7 @@ export const lightTheme = {
         text: '#FFF',
         alternateText: '#333333',
         disabled: '#ebebeb',
-
+        accent: '#38393A',
         primary: '#00AF74'
     }
 }

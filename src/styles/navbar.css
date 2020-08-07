@@ -1,0 +1,37 @@
+.custom-navbar {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 20px;
+    position: relative;
+    border-bottom: 1px solid;
+}
+
+.custom-navbar-item {
+    border-radius: 5px;
+    height: 50px;
+}
+
+.custom-navbar-item:hover {
+    background: var(--accent);
+    cursor: pointer;
+}
+
+.custom-nav-left {
+    position: absolute;
+    left: 15px;
+}
+
+.custom-nav-right {
+    position: absolute;
+    right: 15px;
+}
+
+.no-dropdown-arrow::after {
+    content: none;
+}
+
+.nav-border-bottom {
+    border-bottom: 2px solid;
+}
