@@ -13,52 +13,96 @@ import Logo from '../../assets/svgs/Logo';
 import Home from '../Home/Home';
 import CustomNavBar from './Navbar';
 import SideMenu from './SideMenu';
+import Login from '../Auth/Login';
+import Signup from '../Auth/Signup';
 
 const Layout = (props) => {
+    // OTHER VARIABLES -----------------------------------
     var theme = darkTheme;
 
+
+    // STATES --------------------------------------------
+    const [loggedIn, setLoggedIn] = useState(false);
+
+
+    // PROPS ---------------------------------------------
     const globalProps = {
         theme
     };
 
-    return (
-        <div className="custom-body" style={{background: theme.colors.background, color: theme.colors.text}}>
-            <Container fluid className="px-0">
-                <Router>
 
-                    {/* TOP MENU */}
-                    <CustomNavBar {...props} {...globalProps} />
+    if (loggedIn) {
+        return (
+            <div className="custom-body" style={{background: theme.colors.background, color: theme.colors.text}}>
+                <Container fluid className="px-0">
+                    <Router>
+                        <Switch >
 
-                    {/* ROUTES / CONTENT */}
-                    <Container fluid className="mt-4">
-                        <Row>
-                            <Col md={2} >
-                                <SideMenu {...props} {...globalProps} />
-                            </Col>
-                            <Col md={8} >
-                                <div className="content-container" style={{overflow: 'hidden'}}>
-                                    <Switch>
-                                        <Route
-                                            exact path="/"
-                                            render={() => <Home {...globalProps} />}
-                                        />
-                                        <Route
-                                            path="*"
-                                            render={() => <Home {...globalProps} />}
-                                        />
-                                    </Switch>
-                                </div>
-                            </Col>
-                            <Col md={2} >
+                            {/* TOP MENU */}
+                            <CustomNavBar {...props} {...globalProps} />
 
-                            </Col>
-                        </Row>
-                    </Container>
+                            {/* ROUTES / CONTENT */}
+                            <Container fluid className="mt-4">
+                                <Row>
+                                    <Col md={2} >
+                                        <SideMenu {...props} {...globalProps} />
+                                    </Col>
+                                    <Col md={8} >
+                                        <div className="content-container" style={{overflow: 'hidden'}}>
+                                            <Switch>
+                                                <Route
+                                                    exact path="/"
+                                                    render={() => <Home {...globalProps} />}
+                                                />
+                                                <Route
+                                                    path="*"
+                                                    render={() => <Home {...globalProps} />}
+                                                />
+                                            </Switch>
+                                        </div>
+                                    </Col>
+                                    <Col md={2} >
 
-                </Router>
-            </Container>
-        </div>
-    )
+                                    </Col>
+                                </Row>
+                            </Container>
+                        </Switch>
+                    </Router>
+                </Container>
+            </div>
+        )
+    } else {
+        return (
+            <div className="custom-body" style={{background: theme.colors.background, color: theme.colors.text}} >
+                <Container >
+                    <Row className="d-flex justify-content-center">
+                        <Col md={7}>
+                            <Router>
+                                <Switch >
+                                    <Route
+                                        exact path="/"
+                                        render={() => <Login {...globalProps} />}
+                                    />
+                                    <Route
+                                        exact path="/login"
+                                        render={() => <Login {...globalProps} />}
+                                    />
+                                    <Route
+                                        exact path="/signup"
+                                        render={() => <Signup {...globalProps} />}
+                                    />
+                                    <Route
+                                        path="*"
+                                        render={() => <Login {...globalProps} />}
+                                    />
+                                </Switch>
+                            </Router>
+                        </Col>
+                    </Row>
+                </Container>
+            </div>
+        )
+    }
 }
 
 export default Layout;

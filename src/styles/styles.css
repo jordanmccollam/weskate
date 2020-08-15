@@ -1,9 +1,22 @@
 body {
+    /* VARIABLES */
+    /* Make sure they match theme.js */
+    --background: #18191A;
+    --background2: #242526;
+    --text: #FFF;
+    --altText: #333333;
+    --disabled: #ebebeb;
+    --accent: #38393A;
+    --primary: #00AF74;
+    --primaryDimmed: #009261;
+
+
     font-family: 'BenchNine', sans-serif;
+    overflow: hidden;
 }
 
 .custom-body {
-    height: 100vh;
+    min-height: 100vh;
     width: 100vw;
 }
 
@@ -15,6 +28,63 @@ body {
     color: inherit;
 }
 
+.bottom-border {
+    border-bottom: 1px solid;
+}
+
+.header {
+    font-size: 70px;
+}
+
+.btn-custom {
+    background: var(--primary);
+    color: var(--text);
+}
+.btn-custom:hover {
+    background: var(--primaryDimmed);
+    color: var(--disabled);
+}
+
+/* NAVBAR ------------------------------------------- */
+.custom-navbar {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 20px;
+    position: relative;
+    border-bottom: 1px solid;
+}
+
+.custom-navbar-item {
+    border-radius: 5px;
+    height: 50px;
+}
+
+.custom-navbar-item:hover {
+    background: var(--accent);
+    cursor: pointer;
+}
+
+.custom-nav-left {
+    position: absolute;
+    left: 15px;
+}
+
+.custom-nav-right {
+    position: absolute;
+    right: 15px;
+}
+
+.no-dropdown-arrow::after {
+    content: none;
+}
+
+.nav-border-bottom {
+    border-bottom: 2px solid;
+}
+
+/* CARDS ------------------------------------------ */
 .custom-card {
     min-height: 200px;
     border-radius: 5px;
@@ -30,7 +100,7 @@ body {
     display: none;
 }
 
-
+/* SIDE MENU -------------------------------------- */
 .side-menu {
     padding-left: 0;
     margin-left: 0;
@@ -41,8 +111,4 @@ body {
     overflow-y: auto;
     overflow-x: hidden;
     scrollbar-width: thin;
-}
-
-.bottom-border {
-    border-bottom: 1px solid;
 }
