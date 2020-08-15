@@ -15,6 +15,7 @@ import CustomNavBar from './Navbar';
 import SideMenu from './SideMenu';
 import Login from '../Auth/Login';
 import Signup from '../Auth/Signup';
+import Axios from 'axios';
 
 const Layout = (props) => {
     // OTHER VARIABLES -----------------------------------
@@ -22,64 +23,89 @@ const Layout = (props) => {
 
 
     // STATES --------------------------------------------
-    const [authState, setAuthState] = useState('not logged in');
+    const [loggedIn, setLoggedIn] = useState(false);
+    const [username, setUsername] = useState(null);
 
 
     // PROPS ---------------------------------------------
     const globalProps = {
         theme,
-        authState,
-        setAuthState
     };
 
 
-    if (authState === 'logged in') {
-        return (
-            <div className="custom-body" style={{background: theme.colors.background, color: theme.colors.text}}>
-                <Container fluid className="px-0">
-                    <Router>
-                        <Switch >
+    // USE EFFECT | ON START UP --------------------------
+    useEffect(() => {
+        // getUser();
+    }, [])
 
-                            {/* TOP MENU */}
-                            <CustomNavBar {...props} {...globalProps} />
 
-                            {/* ROUTES / CONTENT */}
-                            <Container fluid className="mt-4">
-                                <Row>
-                                    <Col md={2} >
-                                        <SideMenu {...props} {...globalProps} />
-                                    </Col>
-                                    <Col md={8} >
-                                        <div className="content-container" style={{overflow: 'hidden'}}>
-                                            <Switch>
-                                                <Route
-                                                    exact path="/"
-                                                    render={() => <Home {...globalProps} />}
-                                                />
-                                                <Route
-                                                    path="*"
-                                                    render={() => <Home {...globalProps} />}
-                                                />
-                                            </Switch>
-                                        </div>
-                                    </Col>
-                                    <Col md={2} >
+    // const updateUser = (userObject) => {
+    //     set
+    // }
 
-                                    </Col>
-                                </Row>
-                            </Container>
-                        </Switch>
-                    </Router>
-                </Container>
-            </div>
-        )
-    } else {
+    const getUser = () => {
+        Axios.get('/user/').then(res => {
+            console.log("Get user response: ", res.data);
+            if (res.data.user) {
+                console.log("Get user: There is a user saved in teh server session: ");
+                setLoggedIn(true);
+                setUsername(res.data.user.username);
+            } else {
+                console.log("Get user: no user");
+                setLoggedIn(false);
+                setUsername(null);
+            }
+        })
+    }
+
+
+    // if (loggedIn) {
+        // return (
+        //     <div className="custom-body" style={{background: theme.colors.background, color: theme.colors.text}}>
+        //         <Container fluid className="px-0">
+        //             <Router>
+        //                 <Switch >
+
+        //                     {/* TOP MENU */}
+        //                     <CustomNavBar {...props} {...globalProps} />
+
+        //                     {/* ROUTES / CONTENT */}
+        //                     <Container fluid className="mt-4">
+        //                         <Row>
+        //                             <Col md={2} >
+        //                                 <SideMenu {...props} {...globalProps} />
+        //                             </Col>
+        //                             <Col md={8} >
+        //                                 <div className="content-container" style={{overflow: 'hidden'}}>
+        //                                     <Switch>
+        //                                         <Route
+        //                                             exact path="/"
+        //                                             render={() => <Home {...globalProps} />}
+        //                                         />
+        //                                         <Route
+        //                                             path="*"
+        //                                             render={() => <Home {...globalProps} />}
+        //                                         />
+        //                                     </Switch>
+        //                                 </div>
+        //                             </Col>
+        //                             <Col md={2} >
+
+        //                             </Col>
+        //                         </Row>
+        //                     </Container>
+        //                 </Switch>
+        //             </Router>
+        //         </Container>
+        //     </div>
+        // )
+    // } else {
         return (
             <div className="custom-body" style={{background: theme.colors.background, color: theme.colors.text}} >
                 <Container >
                     <Row className="d-flex justify-content-center">
                         <Col md={7}>
-                            <Router>
+                            {/* <Router>
                                 <Switch >
                                     <Route
                                         exact path="/"
@@ -98,13 +124,14 @@ const Layout = (props) => {
                                         render={() => <Login {...globalProps} />}
                                     />
                                 </Switch>
-                            </Router>
+                            </Router> */}
+                            <Signup {...globalProps} />
                         </Col>
                     </Row>
                 </Container>
             </div>
         )
-    }
+    // }
 }
 
 export default Layout;

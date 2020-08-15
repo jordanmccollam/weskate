@@ -1,9 +1,8 @@
-  
 const express = require('express')
 const router = express.Router()
 const User = require('../database/models/user')
 
-router.post('/signup', (req, res) => {
+router.post('/', (req, res) => {
     console.log('user signup');
 
     const { username, password } = req.body

@@ -7,7 +7,7 @@ import axios from 'axios';
 
 const Signup = (props) => {
 
-    const { theme, setAuthState } = props;
+    const { theme } = props;
 
     const initialUser = {
         username: '',
@@ -22,12 +22,9 @@ const Signup = (props) => {
         })
     }
 
-    const signUp = (event) => {
-        event.preventDefault();
-        console.log('(Signup) username: ', user.username);
-        console.log('(Signup) password: ', user.password);
+    const signUp = () => {
         // Request to server
-        axios.post('/signup', {
+        axios.post('/user/', {
             username: user.username,
             password: user.password
         })
