@@ -38,15 +38,15 @@ const Login = (props) => {
                         name="username"
                         onChange={handleChange}
                         value={user.username}
-                        className="mb-2"
+                        className="mb-2 text-center"
                     />
                     <FormControl 
-                        type="text"
+                        type="password"
                         placeholder="Password"
                         name="password"
                         onChange={handleChange}
                         value={user.password}
-                        className="mb-2"
+                        className="mb-2 text-center"
                     />
                     <button onClick={login} className="btn btn-block btn-custom mb-2" >Login</button>
                     <Link to={'/signup'} className="btn btn-block btn-custom clear-link" >Go to Sign Up</Link>

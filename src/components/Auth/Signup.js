@@ -3,10 +3,11 @@ import {Row, Col, Container, Form, FormControl} from 'react-bootstrap';
 import Logo from '../../assets/svgs/Logo';
 import { Link } from 'react-router-dom';
 import Header from './Header';
+import axios from 'axios';
 
 const Signup = (props) => {
 
-    const { theme } = props;
+    const { theme, setAuthState } = props;
 
     const initialUser = {
         username: '',
@@ -21,8 +22,28 @@ const Signup = (props) => {
         })
     }
 
-    const signUp = () => {
-        
+    const signUp = (event) => {
+        event.preventDefault();
+        console.log('(Signup) username: ', user.username);
+        console.log('(Signup) password: ', user.password);
+        // Request to server
+        axios.post('/signup', {
+            username: user.username,
+            password: user.password
+        })
+        .then(res => {
+            console.log("(Signup) response >>>", res);
+            if (res.data) {
+                console.log("(Signup) successful signup");
+                // REDIRECT to login 
+                    // OR
+                // login automatically and redirect to setAuthState to 'logged in'
+
+            } else {
+                console.error('(Signup) signup error');
+            }
+        })
+        .catch(err => console.error("(Signup) signup error >>>", err))
     }
 
     return (
@@ -38,15 +59,15 @@ const Signup = (props) => {
                         name="username"
                         onChange={handleChange}
                         value={user.username}
-                        className="mb-2"
+                        className="mb-2 text-center"
                     />
                     <FormControl 
-                        type="text"
+                        type="password"
                         placeholder="Password"
                         name="password"
                         onChange={handleChange}
                         value={user.password}
-                        className="mb-2"
+                        className="mb-2 text-center"
                     />
                     <button onClick={signUp} className="btn btn-block btn-custom mb-2" >Sign Up</button>
                     <Link to={'/login'} className="btn btn-block btn-custom clear-link" >Go to Login</Link>

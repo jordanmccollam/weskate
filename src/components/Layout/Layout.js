@@ -22,16 +22,18 @@ const Layout = (props) => {
 
 
     // STATES --------------------------------------------
-    const [loggedIn, setLoggedIn] = useState(false);
+    const [authState, setAuthState] = useState('not logged in');
 
 
     // PROPS ---------------------------------------------
     const globalProps = {
-        theme
+        theme,
+        authState,
+        setAuthState
     };
 
 
-    if (loggedIn) {
+    if (authState === 'logged in') {
         return (
             <div className="custom-body" style={{background: theme.colors.background, color: theme.colors.text}}>
                 <Container fluid className="px-0">
