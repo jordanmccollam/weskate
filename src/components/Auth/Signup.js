@@ -24,7 +24,7 @@ const Signup = (props) => {
 
     const signUp = () => {
         // Request to server
-        axios.post('/user/', {
+        axios.post('/user/signup', {
             username: user.username,
             password: user.password
         })

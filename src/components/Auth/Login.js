@@ -3,10 +3,11 @@ import {Row, Col, Container, Form, FormControl} from 'react-bootstrap';
 import Logo from '../../assets/svgs/Logo';
 import { Link } from 'react-router-dom';
 import Header from './Header';
+import axios from 'axios';
 
 const Login = (props) => {
 
-    const { theme } = props;
+    const { theme, setLoggedIn, setUsername } = props;
 
     const initialUser = {
         username: '',
@@ -22,7 +23,18 @@ const Login = (props) => {
     }
 
     const login = () => {
-        
+        axios.post('/user/login', {
+            username: user.username,
+            password: user.password
+        })
+        .then(res => {
+            console.log("Login response: ", res);
+            if (res.status === 200) {
+                setLoggedIn(true);
+                setUsername(res.data.username)
+            }
+        })
+        .catch(err => console.error('Login Error >>> ', err))
     }
 
     return (

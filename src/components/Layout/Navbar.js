@@ -7,7 +7,7 @@ import {Row, Col, Container, Navbar, NavDropdown, Nav, Form, Button, FormControl
 import Logo from '../../assets/svgs/Logo';
 
 const CustomNavbar = (props) => {
-  const {theme, history} = props;
+  const {theme, history, username, logout} = props;
 
   const [firstTab, setFirstTab] = useState('inherit');
   const [secondTab, setSecondTab] = useState('inherit');
@@ -84,18 +84,18 @@ const CustomNavbar = (props) => {
               data-placement="bottom" 
               title="LEARN"
             >
-              <i class="fas fa-graduation-cap fa-2x"></i>
+              <i className="fas fa-graduation-cap fa-2x"></i>
             </Link>
           </div>
         </div>
 
         <Dropdown className="custom-nav-right d-none d-md-block">
           <Dropdown.Toggle variant="clear" size="lg" style={{color: theme.colors.text}}>
-            Signed in as, Username
+            Signed in as, {username}
           </Dropdown.Toggle>
 
           <Dropdown.Menu>
-            <Dropdown.Item>Sign Out</Dropdown.Item>
+            <Dropdown.Item onClick={logout}>Sign Out</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
 
