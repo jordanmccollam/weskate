@@ -7,7 +7,7 @@ import axios from 'axios';
 
 const Login = (props) => {
 
-    const { theme, setLoggedIn, setUsername } = props;
+    const { theme, setLoggedIn, setUsername, setUserId } = props;
 
     const initialUser = {
         username: '',
@@ -32,6 +32,7 @@ const Login = (props) => {
             if (res.status === 200) {
                 setLoggedIn(true);
                 setUsername(res.data.username)
+                setUserId(res.data.user._id);
             }
         })
         .catch(err => console.error('Login Error >>> ', err))

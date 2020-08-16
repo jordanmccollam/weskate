@@ -13,7 +13,7 @@ import {
 import { withRouter } from 'react-router-dom';
 
 const SideMenu = (props) => {
-    const {theme, history} = props;
+    const {theme, history, username} = props;
 
     const [profileBtn, setProfileBtn] = useState('inherit');
     const [signoutBtn, setSignoutBtn] = useState('inherit');
@@ -28,7 +28,7 @@ const SideMenu = (props) => {
                     style={{backgroundColor: profileBtn}}
                 >
                     <i className="fas fa-user-circle fa-2x"></i>
-                    <div className="ml-3">Username</div>
+                    <div className="ml-3">{username}</div>
                 </div>
                 <div 
                     className="d-flex align-items-center mb-4 custom-navbar-item pl-2" 

@@ -25,6 +25,7 @@ const Layout = (props) => {
     // STATES --------------------------------------------
     const [loggedIn, setLoggedIn] = useState(false);
     const [username, setUsername] = useState(null);
+    const [userId, setUserId] = useState(null);
 
 
     // USE EFFECT | ON START UP --------------------------
@@ -37,13 +38,15 @@ const Layout = (props) => {
         axios.get('/user/').then(res => {
             console.log("Get user response: ", res.data);
             if (res.data.user) {
-                console.log("Get user: There is a user saved in the server session: ");
+                console.log("Get user: There is a user saved in the server session");
                 setLoggedIn(true);
                 setUsername(res.data.user.username);
+                setUserId(res.data.user._id);
             } else {
                 console.log("Get user: no user");
                 setLoggedIn(false);
                 setUsername(null);
+                setUserId(null);
             }
         })
     }
@@ -54,7 +57,8 @@ const Layout = (props) => {
             console.log("logout response: ", res);
             if (res.status === 200) {
                 setLoggedIn(false);
-                setUsername(null)
+                setUsername(null);
+                setUserId(null);
             }
         })
         .catch(err => console.error('logout Error >>> ', err))
@@ -67,7 +71,9 @@ const Layout = (props) => {
         setLoggedIn,
         username,
         setUsername,
-        logout
+        logout,
+        userId,
+        setUserId
     };
 
 
