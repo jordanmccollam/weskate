@@ -16,7 +16,7 @@ body {
 }
 
 .custom-body {
-    min-height: 100vh;
+    height: 100vh;
     width: 100vw;
 }
 
@@ -39,6 +39,7 @@ body {
 .btn-custom {
     background: var(--primary);
     color: var(--text);
+    font-size: 25px;
 }
 .btn-custom:hover {
     background: var(--primaryDimmed);

@@ -75,39 +75,35 @@ const Layout = (props) => {
         return (
             <div className="custom-body" style={{background: theme.colors.background, color: theme.colors.text}}>
                 <Container fluid className="px-0">
-                    <Router>
-                        <Switch >
 
-                            {/* TOP MENU */}
-                            <CustomNavBar {...props} {...globalProps} />
+                    {/* TOP MENU */}
+                    <CustomNavBar {...props} {...globalProps} />
 
-                            {/* ROUTES / CONTENT */}
-                            <Container fluid className="mt-4">
-                                <Row>
-                                    <Col md={2} >
-                                        <SideMenu {...props} {...globalProps} />
-                                    </Col>
-                                    <Col md={8} >
-                                        <div className="content-container" style={{overflow: 'hidden'}}>
-                                            <Switch>
-                                                <Route
-                                                    exact path="/"
-                                                    render={() => <Home {...globalProps} />}
-                                                />
-                                                <Route
-                                                    path="*"
-                                                    render={() => <Home {...globalProps} />}
-                                                />
-                                            </Switch>
-                                        </div>
-                                    </Col>
-                                    <Col md={2} >
+                    {/* ROUTES / CONTENT */}
+                    <Container fluid className="mt-4">
+                        <Row>
+                            <Col md={2} >
+                                <SideMenu {...props} {...globalProps} />
+                            </Col>
+                            <Col md={8} >
+                                <div className="content-container" style={{overflow: 'hidden'}}>
+                                    <Switch>
+                                        <Route
+                                            exact path="/"
+                                            render={() => <Home {...globalProps} />}
+                                        />
+                                        <Route
+                                            path="*"
+                                            render={() => <Home {...globalProps} />}
+                                        />
+                                    </Switch>
+                                </div>
+                            </Col>
+                            <Col md={2} >
 
-                                    </Col>
-                                </Row>
-                            </Container>
-                        </Switch>
-                    </Router>
+                            </Col>
+                        </Row>
+                    </Container>
                 </Container>
             </div>
         )
